@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>genie</title>
+    <style>
+        :root { --accent: #2a5bd7; --accent-dark: #1f3c9a; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(180deg, #ffffff, #f0f7ff);
+            color: #333;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background: linear-gradient(120deg, rgba(42, 91, 215, 0.95), rgba(30, 54, 150, 0.88));
+            color: #f5f7ff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 18px 35px rgba(20, 52, 145, 0.25);
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            inset: auto 40px -12px 40px;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.35), rgba(255,255,255,0));
+            border-radius: 999px;
+        }
+        .logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: lowercase;
+        }
+        nav a {
+            margin-left: 24px;
+            text-decoration: none;
+            color: #f7f8ff;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+        nav a:hover { color: #dbe7ff; }
+        .hero {
+            padding: 120px 20px 110px;
+            text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(42, 91, 215, 0.18), transparent 55%);
+            z-index: -2;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 60px;
+            right: 18%;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(110, 155, 255, 0.55), rgba(110, 155, 255, 0));
+            filter: blur(8px);
+            z-index: -1;
+        }
+        h1 {
+            font-size: 64px;
+            margin: 0;
+            text-transform: lowercase;
+        }
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-transform: lowercase;
+        }
+        p { max-width: 680px; margin: 20px auto; line-height: 1.7; }
+        .cta {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 14px 36px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: 0 18px 38px rgba(42, 91, 215, 0.28);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .cta:hover { transform: translateY(-2px); box-shadow: 0 22px 48px rgba(42, 91, 215, 0.38); }
+        section { padding: 80px 20px; text-align: center; position: relative; }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
+            margin-top: 44px;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .feature {
+            padding: 22px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid rgba(42, 91, 215, 0.12);
+            color: #1d3c8a;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 26px;
+            max-width: 960px;
+            margin: 50px auto 0;
+        }
+        .report-item {
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(160deg, rgba(42, 91, 215, 0.1), rgba(255, 255, 255, 0.85));
+            box-shadow: 0 18px 45px rgba(13, 57, 156, 0.08);
+            text-align: left;
+        }
+        .report-item h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            text-transform: none;
+            color: #1d3c8a;
+        }
+        .report-item p {
+            margin: 0;
+            font-size: 14px;
+            color: #4a5d85;
+            line-height: 1.6;
+        }
+        .report-icon {
+            font-size: 30px;
+            margin-bottom: 16px;
+        }
+        .pattern-band {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(90%, 960px);
+            height: 140px;
+            background: linear-gradient(135deg, rgba(42, 91, 215, 0.12), rgba(42, 91, 215, 0));
+            border-radius: 28px;
+            z-index: -3;
+        }
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+        @media (max-width: 640px) {
+            header {
+                padding: 16px 24px;
+            }
+            nav a { margin-left: 16px; }
+            h1 { font-size: 46px; }
+            h2 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">genie</div>
+        <nav>
+            <a href="#about">about</a>
+            <a href="#report">report</a>
+            <a href="#contact">contact</a>
+        </nav>
+    </header>
+    <div class="hero">
+        <h1>genie</h1>
+        <p>Genie teams up with small businesses to find practical ways AI and software can help them. Meet with us to map out the tools, automations, and AI use cases that save time, cut costs, simplify operations, and unlock your next wave of growth.</p>
+        <a class="cta" href="https://calendly.com/kavishpsucamp/30min" target="_blank" rel="noopener">get started</a>
+    </div>
+    <section id="about">
+        <div class="pattern-band"></div>
+        <h2>how our recommendations help</h2>
+        <div class="features">
+            <div class="feature">save time</div>
+            <div class="feature">cut costs</div>
+            <div class="feature">simplify ops</div>
+            <div class="feature">plan growth</div>
+        </div>
+    </section>
+    <section id="report">
+        <h2>what's inside your report</h2>
+        <div class="report-grid">
+            <div class="report-item">
+                <div class="report-icon">🧭</div>
+                <h3>core systems</h3>
+                <p>See where software can shoulder the work across operations, finance, HR, and every team that keeps you moving.</p>
+            </div>
+            <div class="report-item">
+                <div class="report-icon">🤖</div>
+                <h3>insights on AI</h3>
+                <p>You've heard about AI everywhere. But how can you use it? Find ways to deliver leverage across the same workflows without extra headcount.</p>
+            </div>
+            <div class="report-item">
+                <div class="report-icon">⚙️</div>
+                <h3>automation strategies</h3>
+                <p>Highlight the handoffs and steps needed for streamlined automation with software so your team stays efficient.</p>
+            </div>
+            <div class="report-item">
+                <div class="report-icon">📈</div>
+                <h3>growth strategies</h3>
+                <p>Connect today’s wins to the next wave of growth for your business</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>ready for your custom brief?</h2>
+        <p>Grab a slot and we’ll meet you where you are—whether you’re modernising operations, exploring AI, or planning how you will grow next.</p>
+        <a class="cta" href="https://calendly.com/kavishpsucamp/30min" target="_blank" rel="noopener">book an intro</a>
+        <p style="margin-top: 32px; font-weight: 600; color: #1d3c8a;">email: <a href="mailto:kavishs@sas.upenn.edu" style="color: inherit; text-decoration: underline;">kavishs@sas.upenn.edu</a></p>
+    </section>
+    <footer>&copy; 2025 genie</footer>
+</body>
+</html>
